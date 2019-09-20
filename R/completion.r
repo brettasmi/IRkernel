@@ -26,7 +26,7 @@ completions <- function(code, cursor_pos = nchar(code), fixup = TRUE) {
 
     comps <- get('.retrieveCompletions', utils_ns)()
     
-    if (fixup) comps <- fixup_comps(comps)
+    if (fixup && !grepl('["\']', line)) comps <- fixup_comps(comps)
     
     start_position <- chars_before_line + c.info$start
     list(
